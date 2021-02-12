@@ -45,7 +45,6 @@ final class NCZIService: NetworkService<NCZIEndpoint> {
 
                     return
                 }
-                // TODO: sem by sme sa nemali dostat ale tak djme tomu ze je to valid
                 completion(.success(OTPResponseData()))
             case .failure(let error, _):
                 completion(.failure(error))

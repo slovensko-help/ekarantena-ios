@@ -58,7 +58,6 @@ final class LocationMonitoring: NSObject {
         if Defaults.quarantineActive {
             guard let latitude = Defaults.quarantineLatitude,
                 let longitude = Defaults.quarantineLongitude else {
-                    // TODO: nieco tu nesedi
                     return
             }
             LocationMonitoring.shared.verifyQuarantinePresence()
@@ -127,7 +126,6 @@ extension LocationMonitoring {
 
             manager.startMonitoring(for: region)
         }
-        // TODO: error
     }
 
     private func removeQuarantineRegion() {

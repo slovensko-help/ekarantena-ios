@@ -40,6 +40,7 @@ final class QuarantineViewController: ViewController {
     @IBOutlet private var quarantineUntilLabel: UILabel!
     @IBOutlet private var countdownNoticeLabel: UILabel!
 
+    private var observer: NSObjectProtocol?
     private let networkService = CovidService()
 
     private var quarantineData: QuarantineStatusResponseData? {
@@ -68,12 +69,18 @@ final class QuarantineViewController: ViewController {
         }
     }
 
+    deinit {
+        observer = nil
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         guard Defaults.profileId != nil else { return }
 
-        NotificationCenter.default.addObserver(forName: .updateQuarantine, object: nil, queue: nil) { [weak self] (_) in
+        observer = NotificationCenter.default.addObserver(forName: .updateQuarantine,
+                                               object: nil,
+                                               queue: nil) { [weak self] (_) in
             self?.updateQuarantineStatus()
         }
 
@@ -84,7 +91,10 @@ final class QuarantineViewController: ViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
-        NotificationCenter.default.removeObserver(self, name: .updateQuarantine, object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: .updateQuarantine,
+                                                  object: nil)
+        observer = nil
     }
 }
 

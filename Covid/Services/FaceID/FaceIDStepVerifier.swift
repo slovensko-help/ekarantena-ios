@@ -52,7 +52,7 @@ final class LivenessStepCoordinator {
         let style: LivenessCheckStyle
 
         configuration = LivenessConfiguration(transitionType: transitionType) {
-            var segments: [DOTSegment]  = []
+            var segments: [DOTSegment] = []
             for _ in 0...7 {
                 guard let position = DOTSegment.DOTSegmentPosition(rawValue: Int.random(in: 0...3)) else { continue }
                 segments.append(DOTSegment(targetPosition: position, duration: 1000))

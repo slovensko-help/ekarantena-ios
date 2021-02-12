@@ -83,7 +83,9 @@ extension Crypto {
         let status = SecItemCopyMatching(getQuery as CFDictionary, &item)
         guard status == errSecSuccess else { return nil }
 
+        // swiftlint:disable force_cast
         return (item as! SecKey)
+        // swiftlint:enable force_cast
     }
 
     private class func generateKey() throws {

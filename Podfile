@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '10.1'
+platform :ios, '12.0'
 
 source 'https://github.com/CocoaPods/Specs.git'
 source 'https://github.com/innovatrics/innovatrics-podspecs'
@@ -18,6 +18,6 @@ target 'Covid' do
   pod 'Firebase/Messaging'#, '4.3.0'
   pod 'Firebase/DynamicLinks'#, '4.0.8'
 
-  pod 'SwiftOTP', '2.0.0'
+  pod 'SwiftOTP', '2.0.3'
   pod 'iface', '3.8.1'
 end

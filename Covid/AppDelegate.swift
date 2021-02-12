@@ -169,7 +169,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate: MessagingDelegate {
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         Defaults.FCMToken = fcmToken
     }
 }
@@ -192,7 +192,7 @@ extension AppDelegate {
         remoteConfig.fetch { (status, error) -> Void in
             if status == .success {
                 print("Config fetched!")
-                self.remoteConfig?.activate { _ in }
+                self.remoteConfig?.activate { _, _  in }
             } else {
                 print("Config not fetched")
                 print("Error: \(error?.localizedDescription ?? "No error available.")")

@@ -47,7 +47,7 @@ final class Hashids {
             vals[i] = value
         }
         let estimation = hashids_estimate_encoded_size(cHashids, count, vals)
-        let buffer = UnsafeMutablePointer<Int8>.allocate(capacity: estimation)//[Int8](repeating: 0, count: estimation)
+        let buffer = UnsafeMutablePointer<Int8>.allocate(capacity: estimation)// [Int8](repeating: 0, count: estimation)
         if hashids_encode(cHashids, buffer, count, vals) > 0 {
             return String(cString: buffer, encoding: .ascii)
         }

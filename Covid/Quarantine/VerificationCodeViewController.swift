@@ -142,7 +142,9 @@ extension VerificationCodeViewController {
     }
 
     private func requestFailed(message: String?) {
-        let alertController = UIAlertController(title: LocalizedString(forKey: "error.title"), message: message ?? LocalizedString(forKey: "error.phone.wrong.input"), preferredStyle: .alert)
+        let alertController = UIAlertController(title: LocalizedString(forKey: "error.title"),
+                                                message: message ?? LocalizedString(forKey: "error.phone.wrong.input"),
+                                                preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: LocalizedString(forKey: "button.close"), style: .cancel) { (_) in
             self.navigationItem.rightBarButtonItem = nil
             self.activationCodeTextField.becomeFirstResponder()

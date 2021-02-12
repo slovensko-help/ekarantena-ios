@@ -21,6 +21,8 @@
  *
  */
 
+// swiftlint:disable file_length trailing_closure
+
 //
 //  ViewController.swift
 //  Covid
@@ -153,7 +155,6 @@ final class MainViewController: ViewController, NotificationCenterObserver {
                     }
                 }
             }
-            // TODO: handle other cases
         }
         UIApplication.shared.registerForRemoteNotifications()
     }
@@ -193,9 +194,10 @@ extension MainViewController {
     private func showRegistrationFailureAlert(_ completion: @escaping () -> Void) {
         Alert.show(title: LocalizedString(forKey: "error.title"),
                    message: LocalizedString(forKey: "error.registration.failed"),
-                   defaultTitle: LocalizedString(forKey: "button.retry")) { (_) in
+                   defaultTitle: LocalizedString(forKey: "button.retry"),
+                   defaultAction: { _ in
                     completion()
-        }
+                   })
     }
 
     private func registerUser() {
@@ -288,7 +290,7 @@ extension MainViewController {
                     DispatchQueue.main.async {
                         completion()
                     }
-        })
+                   })
     }
 
     private func finishProfileRegistration(_ completion: @escaping () -> Void) {
@@ -317,7 +319,7 @@ extension MainViewController {
 
         networkService.requestNoncePush(nonceRequestData: BasicRequestData()) { [weak self] (result) in
             switch result {
-            case .success: break //wait for silent push
+            case .success: break // wait for silent push
             case .failure:
                 self?.showAlertWhenNonceFails {
                     completion()
@@ -356,7 +358,7 @@ extension MainViewController {
                             self.faceCaptureCoordinator = nil
                         }
                     }
-        })
+                   })
     }
 
     func startRandomCheck(showInfo: Bool = false) {
@@ -409,7 +411,8 @@ extension MainViewController {
             switch result {
             case .success(let data):
                 let status = locationCheck ? "OK" : "LEFT"
-                self?.networkService.requestPresenceCheck(presenceCheckRequestData: PresenceCheckRequestData(status: status, nonce: data.nonce)) { [weak self] (_) in
+                let data = PresenceCheckRequestData(status: status, nonce: data.nonce)
+                self?.networkService.requestPresenceCheck(presenceCheckRequestData: data) { [weak self] _ in
                     switch result {
                     case .success:
                         DispatchQueue.main.async {

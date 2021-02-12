@@ -110,7 +110,8 @@ final class CovidService: NetworkService<CovidEndpoint> {
         }
     }
 
-    func requestPresenceCheckNeeded(presenceNeededRequestData: BasicRequestData, completion: @escaping (Result<PresenceCheckNeededResponseData, Error>) -> Void) {
+    func requestPresenceCheckNeeded(presenceNeededRequestData: BasicRequestData,
+                                    completion: @escaping (Result<PresenceCheckNeededResponseData, Error>) -> Void) {
         request(.presenceCheckNeeded(presenceNeededRequestData: presenceNeededRequestData)) { (response) in
             switch response {
             case .success(let data, _):

@@ -48,7 +48,10 @@ final class CountryCodeViewController: ViewController {
         loadJSONToArray()
 
         title = LocalizedString(forKey: "phone.verification.title")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: LocalizedString(forKey: "button.next"), style: .done, target: self, action: #selector(didTapDone))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: LocalizedString(forKey: "button.next"),
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(didTapDone))
 
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.addTarget(self, action: #selector(didTapView))

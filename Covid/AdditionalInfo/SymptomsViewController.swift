@@ -36,6 +36,7 @@ final class SymptomsViewController: ViewController {
 
 extension SymptomsViewController {
 
+    // swiftlint:disable line_length
     private func updateUI() {
         guard Locale.current.identifier.contains("sk_") else { return }
         let text = "Ľudia nakazení COVID-19 udávajú široké spektrum prejavov, od miernych až po závažné.\n\nPrejavy sa zvyčajne objavujú 2-14 dní po vystavení sa nákaze a môžu zahŕňať:"
